@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+auth.json
+*.sqlite
+*.sqlite3
+*.db
+*.log
+__pycache__/
+node_modules/
+.venv/
+*.pem
+*.key
+*.p12
