@@ -2,9 +2,9 @@
 
 A-leggo Research 是一个研究助手。研究者提出问题和思路，AI 帮忙起草计划、调用工具；研究者审核关键步骤和最终结果。
 
-**[打开线上展示页](https://atomgit.vercel.app)**：目前可以查看一次真实演示回放。实时计算尚未开放，安全检查完成后才会开启。
+**[打开线上体验页](https://atomgit.vercel.app)**：输入一道计算题，查看 AI 调用 Python 和给出结果的过程；也可以查看一次真实研究演示的回放。
 
-![当前展示页面：实时计算暂未开放](docs/images/demo.png)
+![体验页面：真实计算与研究回放](docs/images/demo-live.png)
 
 ## 研究怎样进行
 
