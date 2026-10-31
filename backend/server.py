@@ -11,6 +11,12 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 LIVE_ENABLED = False
 PROXY_HEADER_VERIFIED = False
 FRONTEND_ORIGIN = 'https://atomgit.vercel.app'
+SANDBOX_REQUIRED = {'basic','basic_cleanup','temp_read_write','temp_read_write_cleanup',
+    'outside_read','outside_read_cleanup','outside_write','outside_write_cleanup',
+    'network','network_cleanup','memory','memory_cleanup','environment','environment_cleanup',
+    'process_creation','process_creation_cleanup','canary_unchanged','thirty_second_limit',
+    'timeout_cleanup','session_deadline','session_cleanup','child_terminated'}
+RATE_REQUIRED = {'three_per_ten_minutes','only_hashed_addresses','expiry','two_concurrent_globally'}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -103,7 +109,10 @@ class Handler(BaseHTTPRequestHandler):
             pass
         finally:
             if stream is not None:
-                stream.close()
+                try:
+                    stream.close()
+                except Exception:
+                    pass
             try:
                 limiter.release(ticket)
             except Exception:
@@ -129,9 +138,10 @@ RATE_TESTS = {'state': 'pending' if os.getenv('DATABASE_URL') else 'not_configur
 
 def live_ready():
     return (LIVE_ENABLED and PROXY_HEADER_VERIFIED and bool(os.getenv('DEEPSEEK_API_KEY'))
-        and SANDBOX_TESTS.get('state') == 'complete' and bool(SANDBOX_TESTS.get('checks')) and all(SANDBOX_TESTS['checks'].values())
-        and RATE_TESTS.get('state') == 'complete' and bool(RATE_TESTS.get('checks'))
-        and all(RATE_TESTS['checks'].values()))
+        and SANDBOX_TESTS.get('state') == 'complete' and SANDBOX_REQUIRED <= SANDBOX_TESTS.get('checks', {}).keys()
+        and all(SANDBOX_TESTS['checks'][name] is True for name in SANDBOX_REQUIRED)
+        and RATE_TESTS.get('state') == 'complete' and RATE_REQUIRED <= RATE_TESTS.get('checks', {}).keys()
+        and all(RATE_TESTS['checks'][name] is True for name in RATE_REQUIRED))
 
 
 def run_sandbox_tests():
