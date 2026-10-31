@@ -1,0 +1,6 @@
+source/**
+backend/**
+.git/**
+.env*
+*.sqlite3
+*.log

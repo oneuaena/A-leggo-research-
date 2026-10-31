@@ -1,17 +1,23 @@
 # A-leggo Research
 
-**A-leggo Research** is a local-first mathematics research workbench. This repository keeps the existing offline showcase at the root and publishes the full Research application source under [`source/`](source/).
+A-leggo Research 是一个研究助手。研究者提出问题和思路，AI 帮忙起草计划、调用工具；研究者审核关键步骤和最终结果。
 
-A-leggo Research helps researchers formulate questions, review plans, run bounded investigations, inspect evidence, and record conclusions. The application includes a Python backend, a Next.js interface, and a Windows desktop shell.
+**[打开线上展示页](https://atomgit.vercel.app)**：目前可以查看一次真实演示回放。实时计算尚未开放，安全检查完成后才会开启。
 
-## Get the source
+## 研究怎样进行
 
-The application source is in [`source/`](source/). Start with [`source/README.md`](source/README.md) for setup and run instructions. The offline showcase at [`index.html`](index.html) is a static status/demo page; it does not run the application or perform live research.
+提出问题后，AI 起草研究计划；研究者修改并批准。执行时，AI 按步骤调用工具，遇到重要节点暂停，由研究者确认下一步。
 
-## Local data and credentials
+## 从经验中改进
 
-Application data and provider credentials belong on the user's machine. They are excluded from this public source repository. Enter provider keys through the application settings and do not commit them. No personal research database, packaged Windows application, or recovery archive is included here.
+系统设计为从失败记录中提出方法，通过审核和独立题目检验效果。根据 2026 年 10 月 31 日 08:19 的记录复核，本次正式训练尚未开始，没有可核验的考试对照成绩。
 
-## License
+## 离线查看
 
-A-leggo Research is distributed under Apache License 2.0. See [`LICENSE`](LICENSE) and [`source/THIRD_PARTY_NOTICES.md`](source/THIRD_PARTY_NOTICES.md) for third-party attributions.
+下载本仓库后双击 `index.html` 可离线查看回放。该次独立演示的计算工具运行失败，页面按记录展示。
+
+完整研究端源码在 [`source/`](source/)，部署演示的后端在 [`backend/`](backend/)。演示视频链接：待补充。
+
+## 许可
+
+项目按 Apache License 2.0 分发，第三方许可详见 [LICENSE](LICENSE) 和 [第三方说明](THIRD_PARTY_NOTICES.md)。
