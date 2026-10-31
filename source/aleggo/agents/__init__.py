@@ -1,0 +1,34 @@
+"""
+Agents Module - Unified agent system for A-leggo.
+
+This module provides a unified BaseAgent class and module-specific agents:
+- research: Deep research agents (DecomposeAgent, ResearchAgent, etc.)
+- question: Question generation agents (ReAct architecture, separate base)
+- chat: ``AgenticChatPipeline`` — single-loop chat on the agentic engine
+  (Deep Solve also runs here, via the solve loop capability)
+
+Note: ``co_writer`` and ``book`` are independent top-level modules under
+``aleggo/`` (e.g. ``aleggo.co_writer``, ``aleggo.book``). They
+still inherit from :class:`BaseAgent` defined here but are not part of
+the ``aleggo.agents`` package.
+
+Usage:
+    from aleggo.agents.base_agent import BaseAgent
+
+    class MyAgent(BaseAgent):
+        async def process(self, *args, **kwargs):
+            ...
+"""
+
+from importlib import import_module
+
+__all__ = ["BaseAgent"]
+
+
+def __getattr__(name: str):
+    if name == "BaseAgent":
+        value = import_module(f"{__name__}.base_agent").BaseAgent
+    else:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    globals()[name] = value
+    return value

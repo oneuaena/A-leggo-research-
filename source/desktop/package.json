@@ -1,0 +1,7 @@
+{
+  "name": "aleggo-next-desktop",
+  "private": true,
+  "version": "4.4.0",
+  "scripts": { "tauri": "tauri" },
+  "devDependencies": { "@tauri-apps/cli": "^2.9.2" }
+}

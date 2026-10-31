@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environments and credentials
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+data/user/settings/
+
+# Frontend and packaged build output
+node_modules/
+web/dist/
+desktop/src-tauri/target/
+build/
+dist/
+
+data/

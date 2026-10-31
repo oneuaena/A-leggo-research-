@@ -1,0 +1,9 @@
+html, body { height: 100%; margin: 0; }
+.research-workspace { min-height: 100vh; }
+.local-config { position: relative; font: 14px/1.5 system-ui, sans-serif; }
+.local-config summary { cursor: pointer; border: 1px solid var(--al-border-strong); border-radius: 8px; padding: 7px 12px; background: var(--al-surface); color: var(--al-text); }
+.local-config-panel { position: absolute; right: 0; top: 42px; z-index: 50; width: min(390px, 85vw); background: var(--al-surface); color: var(--al-text); border: 1px solid var(--al-border-strong); border-radius: 10px; padding: 16px; box-shadow: var(--al-shadow-lg); }
+.local-config-panel label { display: grid; gap: 4px; margin: 10px 0; font-weight: 600; color: var(--al-text); }
+.local-config-panel input { border: 1px solid var(--al-border-strong); background: var(--al-surface-subtle); color: var(--al-text); padding: 8px; border-radius: 6px; width: 100%; box-sizing: border-box; }
+.local-config-panel p { margin: 8px 0; color: var(--al-text-muted); }
+.local-config-panel button { background: var(--al-accent); color: var(--al-accent-contrast); padding: 8px 14px; border: 0; border-radius: 6px; cursor: pointer; }
