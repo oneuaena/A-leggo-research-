@@ -23,5 +23,4 @@ source/web/node_modules/
 source/web/dist/
 source/build/
 source/dist/
-source/desktop/src-tauri/target/
-
+source/desktop/src-tauri/target/`n
