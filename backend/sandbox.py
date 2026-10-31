@@ -34,6 +34,9 @@ def execute_python(code, timeout=MAX_TOOL_SECONDS):
             try:
                 with path.open('rb') as file:
                     result[label] = file.read(MAX_OUTPUT_BYTES).decode('utf-8', errors='replace')
+                    result[label] = result[label].replace(workspace, '[临时目录]').replace(str(WORKER), '[计算器]')
+                    if session_root:
+                        result[label] = result[label].replace(session_root, '[会话目录]')
             except OSError:
                 result[label] = ''
         last_workspace = workspace
