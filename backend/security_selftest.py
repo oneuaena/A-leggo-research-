@@ -61,4 +61,16 @@ def run_checks():
             results['session_deadline'] = False
             results['session_cleanup'] = False
             results['child_terminated'] = False
+        try:
+            fixture = Path(__file__).with_name('fixtures') / 'hang.py'
+            stream = supervise('fixed test', 'test-key', seconds=1.5, runner=fixture)
+            event = next(event for event in stream if event.get('workspace'))
+            time.sleep(2)
+            child_stat = Path('/proc') / str(int(event['child'])) / 'stat'
+            results['watchdog_during_blocked_output'] = not child_stat.exists() or child_stat.read_text().split()[2] == 'Z'
+            stream.close()
+            results['watchdog_cleanup'] = not os.path.exists(event['workspace'])
+        except Exception:
+            results['watchdog_during_blocked_output'] = False
+            results['watchdog_cleanup'] = False
     return results

@@ -16,7 +16,9 @@ class RateLimiter:
 
     def connect(self):
         import psycopg
-        return psycopg.connect(self.dsn, connect_timeout=5)
+        return psycopg.connect(self.dsn, connect_timeout=5,
+            options='-c statement_timeout=3000 -c lock_timeout=2000',
+            keepalives=1, keepalives_idle=5, keepalives_interval=2, keepalives_count=2)
 
     def setup(self):
         p = self.prefix

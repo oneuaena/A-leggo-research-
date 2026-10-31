@@ -6,6 +6,7 @@ import signal
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from pathlib import Path
 
@@ -52,6 +53,14 @@ def supervise(question, key, seconds=MAX_SESSION_SECONDS, runner=AGENT):
         deadline = time.monotonic() + seconds
         next_heartbeat = time.monotonic() + 5
         buffer = b''
+        def terminate_group():
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+        watchdog = threading.Timer(seconds, terminate_group)
+        watchdog.daemon = True
+        watchdog.start()
         try:
             proc.stdin.write((json.dumps({'question':question},ensure_ascii=False)+'\n').encode('utf-8'))
             proc.stdin.close()
@@ -86,12 +95,10 @@ def supervise(question, key, seconds=MAX_SESSION_SECONDS, runner=AGENT):
             if time.monotonic() >= deadline:
                 yield {'type':'error','text':'本次计算已达到三分钟上限。'}
         finally:
+            watchdog.cancel()
             selector.close()
             # Agent and its sandbox child share this fresh process group.
-            try:
-                os.killpg(proc.pid, signal.SIGKILL)
-            except ProcessLookupError:
-                pass
+            terminate_group()
             try:
                 proc.wait(timeout=5)
             except subprocess.TimeoutExpired:

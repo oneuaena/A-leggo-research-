@@ -6,6 +6,7 @@ import ctypes.util
 import platform
 import threading
 import ipaddress
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 LIVE_ENABLED = False
@@ -15,7 +16,8 @@ SANDBOX_REQUIRED = {'basic','basic_cleanup','temp_read_write','temp_read_write_c
     'outside_read','outside_read_cleanup','outside_write','outside_write_cleanup',
     'network','network_cleanup','memory','memory_cleanup','environment','environment_cleanup',
     'process_creation','process_creation_cleanup','canary_unchanged','thirty_second_limit',
-    'timeout_cleanup','session_deadline','session_cleanup','child_terminated'}
+    'timeout_cleanup','session_deadline','session_cleanup','child_terminated',
+    'watchdog_during_blocked_output','watchdog_cleanup'}
 RATE_REQUIRED = {'three_per_ten_minutes','only_hashed_addresses','expiry','two_concurrent_globally'}
 
 
@@ -41,7 +43,10 @@ class Handler(BaseHTTPRequestHandler):
             body = {'ok': True, 'execution': 'ready' if live_ready() else 'disabled', 'sandbox_prerequisites': SANDBOX_PREREQUISITES, 'sandbox_selftest': SANDBOX_TESTS, 'rate_selftest': RATE_TESTS}
             if self.headers.get('X-Aleggo-Proxy-Test') == '1':
                 forwarded = [v.strip() for v in self.headers.get('X-Forwarded-For', '').split(',') if v.strip()]
-                body['proxy_test'] = {'count': len(forwarded), 'spoof_positions': [i for i, v in enumerate(forwarded) if v == '203.0.113.55']}
+                cf = self.headers.get('CF-Connecting-IP','').strip()
+                body['proxy_test'] = {'count': len(forwarded), 'spoof_positions': [i for i, v in enumerate(forwarded) if v == '203.0.113.55'],
+                    'cf_present': bool(cf), 'cf_is_spoof': cf == '203.0.113.55',
+                    'cf_positions': [i for i,v in enumerate(forwarded) if cf and v == cf]}
             self.send_json(200, body)
         else:
             self.send_json(404, {'error': '未找到页面'})
@@ -56,6 +61,7 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
+        started = time.monotonic()
         self.close_connection = True
         if self.path != '/api/run':
             self.send_json(404, {'error':'未找到页面'})
@@ -100,7 +106,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Vary','Origin')
             self.send_header('X-Accel-Buffering','no')
             self.end_headers()
-            stream = supervise(question.strip(), os.environ['DEEPSEEK_API_KEY'])
+            remaining = max(0, 180 - (time.monotonic() - started))
+            if remaining <= 0:
+                raise TimeoutError('deadline reached')
+            stream = supervise(question.strip(), os.environ['DEEPSEEK_API_KEY'], seconds=remaining)
             for event in stream:
                 data = ': keepalive\n\n' if event.get('type') == 'heartbeat' else 'data: '+json.dumps(event,ensure_ascii=False)+'\n\n'
                 self.wfile.write(data.encode('utf-8'))
