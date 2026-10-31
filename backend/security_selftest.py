@@ -4,6 +4,7 @@ import tempfile
 import time
 from pathlib import Path
 from sandbox import execute_python
+from supervisor import supervise, MAX_SESSION_SECONDS
 
 
 def run_checks():
@@ -39,4 +40,25 @@ def run_checks():
             results['timeout_cleanup'] = out['cleaned']
         except Exception:
             results['thirty_second_limit'] = False
+        started = time.monotonic()
+        try:
+            fixture = Path(__file__).with_name('fixtures') / 'hang.py'
+            events = list(supervise('fixed test', 'test-key', seconds=1.5, runner=fixture))
+            first = next(event for event in events if event.get('workspace'))
+            results['session_deadline'] = MAX_SESSION_SECONDS == 180 and time.monotonic()-started < 4 and any(event.get('type')=='error' for event in events)
+            results['session_cleanup'] = not os.path.exists(first['workspace'])
+            child = int(first['child'])
+            for _ in range(20):
+                try:
+                    stat = Path('/proc') / str(child) / 'stat'
+                    if not stat.exists() or stat.read_text().split()[2] == 'Z':
+                        break
+                except OSError:
+                    break
+                time.sleep(.1)
+            results['child_terminated'] = not stat.exists() or stat.read_text().split()[2] == 'Z'
+        except Exception:
+            results['session_deadline'] = False
+            results['session_cleanup'] = False
+            results['child_terminated'] = False
     return results

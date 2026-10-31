@@ -16,7 +16,8 @@ def execute_python(code, timeout=MAX_TOOL_SECONDS):
         raise RuntimeError('Linux sandbox required')
     if not isinstance(code, str) or len(code) > 16000 or not (0 < timeout <= MAX_TOOL_SECONDS):
         raise ValueError('invalid calculation')
-    with tempfile.TemporaryDirectory(prefix='aleggo-') as workspace:
+    session_root = os.environ.get('ALEGGO_SESSION_ROOT')
+    with tempfile.TemporaryDirectory(prefix='aleggo-', dir=session_root) as workspace:
         out_path = Path(workspace) / 'stdout.txt'
         err_path = Path(workspace) / 'stderr.txt'
         env = {'PATH': '/usr/bin:/bin', 'HOME': workspace, 'TMPDIR': workspace, 'LANG': 'C.UTF-8'}
