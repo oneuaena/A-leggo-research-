@@ -9,7 +9,7 @@ import ipaddress
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-LIVE_ENABLED = False
+LIVE_ENABLED = True
 PROXY_HEADER_VERIFIED = True  # Render edge spoof checks passed; production onrender.com domain only.
 FRONTEND_ORIGIN = 'https://atomgit.vercel.app'
 SANDBOX_REQUIRED = {'basic','basic_cleanup','temp_read_write','temp_read_write_cleanup',
