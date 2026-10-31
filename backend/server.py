@@ -4,6 +4,7 @@ import os
 import ctypes
 import ctypes.util
 import platform
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 
@@ -23,7 +24,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/health':
-            self.send_json(200, {'ok': True, 'execution': 'disabled', 'sandbox_prerequisites': SANDBOX_PREREQUISITES})
+            self.send_json(200, {'ok': True, 'execution': 'disabled', 'sandbox_prerequisites': SANDBOX_PREREQUISITES, 'sandbox_selftest': SANDBOX_TESTS})
         else:
             self.send_json(404, {'error': '未找到页面'})
 
@@ -45,7 +46,21 @@ def sandbox_prerequisites():
 
 
 SANDBOX_PREREQUISITES = sandbox_prerequisites()
+SANDBOX_TESTS = {'state': 'pending'}
+
+
+def run_sandbox_tests():
+    try:
+        from security_selftest import run_checks
+        results = run_checks()
+        SANDBOX_TESTS.update({'state': 'complete', 'checks': results})
+    except Exception:
+        SANDBOX_TESTS.update({'state': 'failed'})
 
 
 if __name__ == '__main__':
+    if SANDBOX_PREREQUISITES['landlock_abi'] >= 3 and SANDBOX_PREREQUISITES['seccomp_library']:
+        threading.Thread(target=run_sandbox_tests, daemon=True).start()
+    else:
+        SANDBOX_TESTS['state'] = 'unavailable'
     ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '8000'))), Handler).serve_forever()
