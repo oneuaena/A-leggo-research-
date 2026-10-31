@@ -1,0 +1,11 @@
+# Visualize capability status messages (Chinese)
+# Loaded by StatusI18n from the `status:` section.
+status:
+  analyzing: "正在分析可视化需求..."
+  generating: "正在生成可视化代码..."
+  manim_code_prepared: "Manim 代码已准备好。"
+  manim_rendering: "正在渲染 {mode}，质量={quality}。"
+  manim_retry: "重试 {attempt}：{error}"
+  manim_artifacts_one: "已准备 {count} 个产物。"
+  manim_artifacts_many: "已准备 {count} 个产物。"
+  llm_call_failed: "LLM 调用失败。"

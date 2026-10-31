@@ -1,0 +1,11 @@
+{
+  "name": "A-leggo Next",
+  "short_name": "A-leggo",
+  "description": "Evidence-driven university mathematics learning companion",
+  "start_url": "/aleggo",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fdfcf9",
+  "theme_color": "#b0501e",
+  "icons": [{ "src": "/aleggo-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

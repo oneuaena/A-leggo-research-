@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "A-leggo Research",
+  "version": "1.0.0",
+  "identifier": "local.aleggo.research",
+  "build": { "frontendDist": "../static" },
+  "app": {
+    "windows": [],
+    "withGlobalTauri": true,
+    "security": { "csp": null }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "dmg", "appimage"],
+    "externalBin": ["binaries/aleggo-research-server"],
+    "windows": { "nsis": { "displayLanguageSelector": false } }
+  }
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>A-leggo Next</title>
+  <rect width="64" height="64" rx="16" fill="#f3e6d1"/>
+  <path d="M31.8 10 12 51h11.4l3.3-7.4h14.4l3.4 7.4H56L36.5 10zM31.7 34.7l2.4-5.4 2.5 5.4z" fill="#9a4f3f"/>
+  <circle cx="47.5" cy="17" r="4" fill="#d69b63"/>
+</svg>

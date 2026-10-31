@@ -14,3 +14,14 @@ node_modules/
 *.p12
 
 .vercel
+
+# Research app local data and build outputs
+source/data/
+source/.venv/
+source/node_modules/
+source/web/node_modules/
+source/web/dist/
+source/build/
+source/dist/
+source/desktop/src-tauri/target/
+

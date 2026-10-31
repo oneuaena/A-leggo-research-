@@ -1,0 +1,527 @@
+[
+  {
+    "id": "calc_01",
+    "category": "calculus",
+    "difficulty": "medium",
+    "title": "三角幂次定积分",
+    "problem_text": "计算定积分 \\int_0^{\\pi/2} \\sin^6(x)\\cos^4(x)\\,dx 的精确符号值（用 pi 表示，并在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "3*pi/512"
+    }
+  },
+  {
+    "id": "calc_02",
+    "category": "calculus",
+    "difficulty": "medium",
+    "title": "五阶泰勒极限",
+    "problem_text": "求极限 \\lim_{x \\to 0} \\frac{\\sin(x) - x + x^3/6}{x^5} 的精确有理数值（在最后一行以 FINAL_ANSWER: <分数> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "1/120"
+    }
+  },
+  {
+    "id": "calc_03",
+    "category": "calculus",
+    "difficulty": "medium",
+    "title": "广义高斯矩积分",
+    "problem_text": "计算广义积分 \\int_0^{\\infty} x^4 e^{-x^2}\\,dx 的精确符号值（用 sqrt(pi) 表示，在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "3*sqrt(pi)/8"
+    }
+  },
+  {
+    "id": "calc_04",
+    "category": "calculus",
+    "difficulty": "medium",
+    "title": "椭圆约束下的线性泛函极值",
+    "problem_text": "求二元函数 f(x, y) = 3x + 4y 在椭圆 x^2/9 + y^2/16 = 1 上的全局最大值（精确符号形式，在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "sqrt(337)"
+    }
+  },
+  {
+    "id": "calc_05",
+    "category": "calculus",
+    "difficulty": "competition_intro",
+    "title": "麦克劳林级数五次项系数",
+    "problem_text": "求函数 f(x) = e^x \\sin(x) 在 x = 0 处的麦克劳林级数展开式中 x^5 的系数（精确最简分数，在最后一行以 FINAL_ANSWER: <分数> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "-1/30"
+    }
+  },
+  {
+    "id": "calc_06",
+    "category": "calculus",
+    "difficulty": "competition_hard",
+    "title": "费曼含参积分法求对数正弦定积分",
+    "problem_text": "计算定积分 \\int_0^{\\pi/2} \\ln(1 + 3\\sin^2 x)\\,dx 的精确符号值（用 pi 和 log(3/2) 表示，在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "pi*log(3/2)"
+    }
+  },
+  {
+    "id": "calc_07",
+    "category": "calculus",
+    "difficulty": "competition_hard",
+    "title": "无理数幂次正切对称定积分（King 性质）",
+    "problem_text": "计算定积分 \\int_0^{\\pi/2} \\frac{1}{1 + (\\tan x)^{\\sqrt{2026}}}\\,dx 的精确符号值（用 pi 表示，在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "pi/4"
+    }
+  },
+  {
+    "id": "calc_08",
+    "category": "calculus",
+    "difficulty": "competition_hard",
+    "title": "高阶留数定理与傅里叶余弦广义积分",
+    "problem_text": "计算广义积分 \\int_0^{\\infty} \\frac{\\cos(2x)}{(x^2 + 1)(x^2 + 4)}\\,dx 的精确符号值（用 pi 和 E 表示，在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "pi/(12*E**2)"
+    }
+  },
+  {
+    "id": "linalg_01",
+    "category": "linear_algebra",
+    "difficulty": "competition_intro",
+    "title": "四阶 GCD (Smith) 矩阵行列式",
+    "problem_text": "设 4 阶方阵 A 的第 (i, j) 个元素为 A_{i,j} = \\gcd(i, j)（1 \\le i, j \\le 4）。求矩阵 A 的行列式 \\det(A)（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "4"
+    }
+  },
+  {
+    "id": "linalg_02",
+    "category": "linear_algebra",
+    "difficulty": "medium",
+    "title": "对称循环矩阵高次幂的迹",
+    "problem_text": "设 3 阶矩阵 A = [[2, 1, 1], [1, 2, 1], [1, 1, 2]]。计算矩阵六次幂的迹 \\operatorname{tr}(A^6)（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "4098"
+    }
+  },
+  {
+    "id": "linalg_03",
+    "category": "linear_algebra",
+    "difficulty": "medium",
+    "title": "上三角矩阵特征多项式展开",
+    "problem_text": "设 3 阶矩阵 A = [[1, 2, 3], [0, 4, 5], [0, 0, 6]]，求其特征多项式 p(x) = \\det(xI - A) 关于变量 x 的展开多项式（在最后一行以 FINAL_ANSWER: <关于x的多项式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "x**3 - 11*x**2 + 34*x - 24",
+      "symbols": [
+        "x"
+      ]
+    }
+  },
+  {
+    "id": "linalg_04",
+    "category": "linear_algebra",
+    "difficulty": "medium",
+    "title": "加法型网格矩阵的秩",
+    "problem_text": "设 5 阶矩阵 M 的元素为 M_{i,j} = i + j（1 \\le i, j \\le 5）。求矩阵 M 的秩 \\operatorname{rank}(M)（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "2"
+    }
+  },
+  {
+    "id": "linalg_05",
+    "category": "linear_algebra",
+    "difficulty": "competition_intro",
+    "title": "给定迹与行列式的正整数矩阵构造",
+    "problem_text": "请构造一个 2x2 正整数矩阵 [[a, b], [c, d]]（其中 a, b, c, d 均为严格大于 0 的正整数），使得其迹 a + d = 5 且行列式 ad - bc = 1。在最后一行以 JSON 数组格式 FINAL_ANSWER: [[a, b], [c, d]] 输出。",
+    "verifier": {
+      "type": "constructive_python",
+      "expected": "[[2, 1], [1, 3]]",
+      "code": "import json\ntry:\n    mat = json.loads(CANDIDATE_RAW)\n    assert isinstance(mat, list) and len(mat) == 2 and len(mat[0]) == 2 and len(mat[1]) == 2\n    a, b = int(mat[0][0]), int(mat[0][1])\n    c, d = int(mat[1][0]), int(mat[1][1])\n    assert a > 0 and b > 0 and c > 0 and d > 0\n    assert a + d == 5 and a * d - b * c == 1\n    result = f'PASS: matrix={mat} trace={a+d} det={a*d-b*c}'\nexcept Exception as e:\n    result = f'FAIL: {e}'"
+    }
+  },
+  {
+    "id": "linalg_06",
+    "category": "linear_algebra",
+    "difficulty": "competition_hard",
+    "title": "万亿阶秩一扰动对角矩阵（Matrix Determinant Lemma）行列式比值",
+    "problem_text": "设 N = 10^{12}。定义 N 阶方阵 A 的元素为：当 i = j 时 A_{i,i} = 1 + i(i+1)；当 i \\neq j 时 A_{i,j} = 1（1 \\le i, j \\le N）。记 D_0 = \\prod_{i=1}^{N} i(i+1)，求比值 \\frac{\\det(A)}{D_0} 的精确最简分数 p/q（在最后一行以 FINAL_ANSWER: <p/q> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "2000000000001/1000000000001"
+    }
+  },
+  {
+    "id": "linalg_07",
+    "category": "linear_algebra",
+    "difficulty": "competition_hard",
+    "title": "凯莱-哈密顿定理与三阶矩阵 10^15 次幂的迹模素数",
+    "problem_text": "设 3 阶矩阵 A = [[3, 1, -1], [2, 4, -2], [1, 1, 1]]。求 \\operatorname{tr}(A^{10^{15}}) \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "46293866"
+    }
+  },
+  {
+    "id": "linalg_08",
+    "category": "linear_algebra",
+    "difficulty": "competition_hard",
+    "title": "万亿阶三对角 Toeplitz 矩阵行列式模运算",
+    "problem_text": "设 N = 10^{12} 阶三对角矩阵 T_N 满足：主对角线元素 T_{i,i} = 5（1 \\le i \\le N），次对角线元素 T_{i,i+1} = T_{i+1,i} = 2（1 \\le i \\le N-1），其余位置元素均为 0。求行列式 \\det(T_N) \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "263713079"
+    }
+  },
+  {
+    "id": "seq_01",
+    "category": "sequences_and_series",
+    "difficulty": "medium",
+    "title": "二阶差比无穷级数求和",
+    "problem_text": "计算无穷级数 \\sum_{n=1}^{\\infty} \\frac{n^2}{2^n} 的精确值（在最后一行以 FINAL_ANSWER: <数值> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "6"
+    }
+  },
+  {
+    "id": "seq_02",
+    "category": "sequences_and_series",
+    "difficulty": "medium",
+    "title": "二阶常系数线性齐次递推通项",
+    "problem_text": "已知数列满足 a_0 = 1, a_1 = 2，且对任意 n \\ge 2 有 a_n = 4a_{n-1} - 3a_{n-2}。求 a_n 关于 n 的闭合通项公式（在最后一行以 FINAL_ANSWER: <关于n的表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "(3**n + 1)/2",
+      "symbols": [
+        "n"
+      ]
+    }
+  },
+  {
+    "id": "seq_03",
+    "category": "sequences_and_series",
+    "difficulty": "medium",
+    "title": "三项分式裂项有限求和",
+    "problem_text": "计算有限和 \\sum_{k=1}^{50} \\frac{1}{k(k+1)(k+2)} 的精确最简分数（在最后一行以 FINAL_ANSWER: <最简分数> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "1325/5304"
+    }
+  },
+  {
+    "id": "seq_04",
+    "category": "sequences_and_series",
+    "difficulty": "medium",
+    "title": "有理分式无穷级数",
+    "problem_text": "计算无穷级数 \\sum_{n=1}^{\\infty} \\frac{1}{n^2 + 3n + 2} 的精确有理数值（在最后一行以 FINAL_ANSWER: <最简分数> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "1/2"
+    }
+  },
+  {
+    "id": "seq_05",
+    "category": "sequences_and_series",
+    "difficulty": "competition_intro",
+    "title": "斐波那契数列前 20 项平方和",
+    "problem_text": "设斐波那契数列定义为 F_1 = 1, F_2 = 1, F_n = F_{n-1} + F_{n-2} (n \\ge 3)。求前 20 项的平方和 \\sum_{k=1}^{20} F_k^2（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "74049690"
+    }
+  },
+  {
+    "id": "seq_06",
+    "category": "sequences_and_series",
+    "difficulty": "competition_hard",
+    "title": "万亿项无理根式裂项有限和",
+    "problem_text": "设 N = 10^{12} - 1 = 999999999999。计算有限和 S = \\sum_{k=1}^{N} \\left(\\sqrt{1 + \\frac{1}{k^2} + \\frac{1}{(k+1)^2}} - 1\\right) 的精确最简分数 p/q（在最后一行以 FINAL_ANSWER: <p/q> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "999999999999/1000000000000"
+    }
+  },
+  {
+    "id": "seq_07",
+    "category": "sequences_and_series",
+    "difficulty": "competition_hard",
+    "title": "Sophie Germain 型四次分母无穷级数求和",
+    "problem_text": "计算无穷级数 \\sum_{n=1}^{\\infty} \\frac{4n}{n^4 + 2n^2 + 9} 的精确最简有理数值（在最后一行以 FINAL_ANSWER: <最简分数> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "5/6"
+    }
+  },
+  {
+    "id": "seq_08",
+    "category": "sequences_and_series",
+    "difficulty": "competition_hard",
+    "title": "重根特征方程下的三阶递推数列第 10^15 项",
+    "problem_text": "已知数列满足 a_0 = 1, a_1 = 2, a_2 = 5，且对任意 n \\ge 3 有 a_n = 4a_{n-1} - 5a_{n-2} + 2a_{n-3}。求 a_{10^{15}} \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "535888717"
+    }
+  },
+  {
+    "id": "seq_09",
+    "category": "sequences_and_series",
+    "difficulty": "competition_hard",
+    "title": "莫比乌斯分式线性递推数列第 10^15 项模素数",
+    "problem_text": "设数列满足 x_0 = 1，且对任意 n \\ge 0 有 x_{n+1} = \\frac{5x_n + 6}{x_n + 4}。将有理数 x_{10^{15}} 表示为最简分数 p/q，求 p \\cdot q^{-1} \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "431167489"
+    }
+  },
+  {
+    "id": "comb_01",
+    "category": "combinatorics",
+    "difficulty": "medium",
+    "title": "8 元完全错排数 D_8",
+    "problem_text": "求 8 个不同元素的无不动点排列（错排）总数 D_8（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "14833"
+    }
+  },
+  {
+    "id": "comb_02",
+    "category": "combinatorics",
+    "difficulty": "medium",
+    "title": "第 10 个卡特兰数 C_10",
+    "problem_text": "计算第 10 个卡特兰数 C_{10} = \\frac{1}{11}\\binom{20}{10} 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "16796"
+    }
+  },
+  {
+    "id": "comb_03",
+    "category": "combinatorics",
+    "difficulty": "competition_intro",
+    "title": "二阶加权二项式系数求和",
+    "problem_text": "计算加权组合恒等式求和 \\sum_{k=0}^{12} k^2 \\binom{12}{k} 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "159744"
+    }
+  },
+  {
+    "id": "comb_04",
+    "category": "combinatorics",
+    "difficulty": "competition_intro",
+    "title": "有上界约束的非负整数不定方程解数",
+    "problem_text": "求满足 x_1 + x_2 + x_3 + x_4 = 15 且对每个 i \\in \\{1,2,3,4\\} 均满足 0 \\le x_i \\le 6 的整数解 (x_1, x_2, x_3, x_4) 的个数（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "180"
+    }
+  },
+  {
+    "id": "comb_05",
+    "category": "combinatorics",
+    "difficulty": "competition_intro",
+    "title": "三项式展开式特定幂次系数",
+    "problem_text": "求多项式 (1 + x + x^2)^8 展开式中 x^{10} 项的系数（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "784"
+    }
+  },
+  {
+    "id": "comb_06",
+    "category": "combinatorics",
+    "difficulty": "competition_hard",
+    "title": "卢卡斯定理（Lucas Theorem）下不被 5 整除的巨型组合数计数",
+    "problem_text": "设正整数 n = 5^{20} + 3 \\cdot 5^{12} + 4 \\cdot 5^7 + 2。求在 0 \\le k \\le n 的所有整数 k 中，满足二项式系数 \\binom{n}{k} 不能被 5 整除的 k 的个数（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "120"
+    }
+  },
+  {
+    "id": "comb_07",
+    "category": "combinatorics",
+    "difficulty": "competition_hard",
+    "title": "单位根滤子（Roots of Unity Filter）下的万亿阶四步长组合数和",
+    "problem_text": "设 N = 10^{12}。计算四步长二项式系数之和 S = \\left(\\sum_{k=0}^{N/4} \\binom{N}{4k}\\right) \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "697104001"
+    }
+  },
+  {
+    "id": "comb_08",
+    "category": "combinatorics",
+    "difficulty": "competition_hard",
+    "title": "微分算子法求三阶加权指数二项式巨型和",
+    "problem_text": "设 N = 10^{15}。计算加权组合和 S = \\left(\\sum_{k=0}^{N} k^3 \\binom{N}{k} 2^k\\right) \\bmod 1000000007 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "667483255"
+    }
+  },
+  {
+    "id": "comb_09",
+    "category": "combinatorics",
+    "difficulty": "competition_hard",
+    "title": "生成函数与 Ehrhart 准多项式求三元大面额分拆数",
+    "problem_text": "求有理生成函数 F(x) = \\frac{1}{(1-x)(1-x^2)(1-x^3)} 在 x = 0 处的幂级数展开式中 x^{6000000} 的精确整数系数（等价于满足 a + 2b + 3c = 6000000 的非负整数三元组 (a,b,c) 的个数，在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "3000003000001"
+    }
+  },
+  {
+    "id": "comb_10",
+    "category": "combinatorics",
+    "difficulty": "competition_hard",
+    "title": "Prüfer 序列与带顶点度数约束的有标号生成树计数",
+    "problem_text": "在顶点集为 \\{1, 2, \\dots, 20\\} 的所有有标号生成树中，求满足顶点 1 的度数恰好等于 5 的生成树棵数对 1000000007 取模的结果（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "902320600"
+    }
+  },
+  {
+    "id": "nt_01",
+    "category": "number_theory",
+    "difficulty": "medium",
+    "title": "四模数中国剩余定理最小正解",
+    "problem_text": "求满足同余方程组 x \\equiv 2 \\pmod 3, x \\equiv 3 \\pmod 5, x \\equiv 4 \\pmod 7, x \\equiv 5 \\pmod{11} 的最小正整数 x（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "368"
+    }
+  },
+  {
+    "id": "nt_02",
+    "category": "number_theory",
+    "difficulty": "medium",
+    "title": "正整数全部正因子之和",
+    "problem_text": "求正整数 3600 的所有正因子之和 \\sigma_1(3600)（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "12493"
+    }
+  },
+  {
+    "id": "nt_03",
+    "category": "number_theory",
+    "difficulty": "competition_intro",
+    "title": "Pillai 算术函数求和",
+    "problem_text": "计算数论和式 \\sum_{k=1}^{100} \\gcd(k, 100) 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "520"
+    }
+  },
+  {
+    "id": "nt_04",
+    "category": "number_theory",
+    "difficulty": "competition_intro",
+    "title": "高次幂模 10000 末四位",
+    "problem_text": "求 7^{2026} \\bmod 10000 的最小非负剩余（即十进制末四位整数，在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "5649"
+    }
+  },
+  {
+    "id": "nt_05",
+    "category": "number_theory",
+    "difficulty": "competition_intro",
+    "title": "互素二平方和构造问题",
+    "problem_text": "请找出一对满足 1 \\le x < y \\le 100 且 \\gcd(x, y) = 1 的正整数 [x, y]，使得 x^2 + y^2 = 5825。在最后一行以 JSON 数组格式 FINAL_ANSWER: [x, y] 输出。",
+    "verifier": {
+      "type": "constructive_python",
+      "expected": "[7, 76]",
+      "code": "import json, math\ntry:\n    pair = json.loads(CANDIDATE_RAW)\n    assert isinstance(pair, list) and len(pair) == 2\n    x, y = int(pair[0]), int(pair[1])\n    assert 1 <= x < y <= 100\n    assert math.gcd(x, y) == 1\n    assert x * x + y * y == 5825\n    result = f'PASS: x={x}, y={y}, x^2+y^2={x*x+y*y}'\nexcept Exception as e:\n    result = f'FAIL: {e}'"
+    }
+  },
+  {
+    "id": "nt_06",
+    "category": "number_theory",
+    "difficulty": "competition_intro",
+    "title": "高次多项式逐项取模余数有限和",
+    "problem_text": "设 r_k = (k^5 + 17k^2 + 23) \\bmod 997（其中 r_k \\in \\{0, 1, \\dots, 996\\} 表示最小非负余数）。求有限余数和 \\sum_{k=1}^{300} r_k 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "158199"
+    }
+  },
+  {
+    "id": "nt_07",
+    "category": "number_theory",
+    "difficulty": "competition_hard",
+    "title": "勒让德公式（Legendre Formula）求万亿阶乘的 7-adic 赋值",
+    "problem_text": "设 N = (10^{12})!。求 N 的质因数分解中质数 7 的最高幂次指数 \\nu_7((10^{12})!) 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "166666666660"
+    }
+  },
+  {
+    "id": "nt_08",
+    "category": "number_theory",
+    "difficulty": "competition_hard",
+    "title": "狄利克雷卷积与积性函数求 12^12 阶 Pillai 最大公因数和",
+    "problem_text": "设 N = 12^{12} = 8916100448256。计算数论和式 S = \\sum_{k=1}^{N} \\gcd(k, N) 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "1043183752445952"
+    }
+  },
+  {
+    "id": "nt_09",
+    "category": "number_theory",
+    "difficulty": "competition_hard",
+    "title": "欧拉定理与中国剩余定理求四层指数塔末六位",
+    "problem_text": "计算四层指数塔 13^{17^{19^{23}}} \\bmod 1000000 的最小非负余数（即十进制末六位构成的整数，在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "639053"
+    }
+  },
+  {
+    "id": "nt_10",
+    "category": "number_theory",
+    "difficulty": "competition_hard",
+    "title": "伯努利数与 Faulhaber 公式求 10^15 项五次幂和模素数",
+    "problem_text": "设 M = 10^{15}，素数 p = 1000000007。计算五次幂和 S = \\left(\\sum_{k=1}^{M} k^5\\right) \\bmod p 的精确非负整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "116591262"
+    }
+  },
+  {
+    "id": "nt_11",
+    "category": "number_theory",
+    "difficulty": "competition_hard",
+    "title": "欧拉函数对称性求万亿以内互素正整数加权和",
+    "problem_text": "设 N = 10^{12}。计算在 1 \\le k \\le N 且 \\gcd(k, N) = 1 的所有正整数 k 上，和式 S = \\frac{1}{N} \\sum_{\\substack{1 \\le k \\le N \\\\ \\gcd(k, N) = 1}} k 的精确整数值（在最后一行以 FINAL_ANSWER: <整数> 输出）。",
+    "verifier": {
+      "type": "numeric",
+      "expected": "200000000000"
+    }
+  },
+  {
+    "id": "prob_a_hankel",
+    "category": "hankel_determinants",
+    "difficulty": "hard",
+    "title": "Hankel 行列式与母函数展开 (Problem A)",
+    "problem_text": "设数列 (c_0,c_1,c_2,\\ldots) 满足：\\n\\[(1-3x-\\sqrt{1-14x+9x^2})/4=\\sum_{k=0}^{\\infty}c_kx^k.\\]\\n对于正整数 n，定义 A_n=(c_{i+j-1})_{1\\leq i,j\\leq n}。求 det(A_n)，并给出任意正整数 n 下的严格数学证明（并在最后一行以 FINAL_ANSWER: <表达式> 输出）。",
+    "verifier": {
+      "type": "sympy_equiv",
+      "expected": "10**(n*(n-1)/2)"
+    }
+  }
+]
